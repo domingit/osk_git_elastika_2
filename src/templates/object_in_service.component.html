@@ -1,0 +1,180 @@
+ <div>
+<div *ngIf="servSearchResult" class="container-fluid"> 
+        <div class="table-responsive" *ngIf="servSearchResult">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(servSearchResult,'service_domain',sortReverseServ) ">
+                            Service domain
+                            <span *ngIf="sortPropServ == 'service_domain' && sortReverseServ"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropServ == 'service_domain' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(servSearchResult,'service_group',sortReverseServ) ">
+                            Service group
+                            <span *ngIf="sortPropServ == 'service_group' && sortReverseServ"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropServ == 'service_group' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(servSearchResult,'service_name',sortReverseServ) ">
+                            Name
+                            <span *ngIf="sortPropServ == 'service_name' && sortReverseServ"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropServ == 'service_name' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(servSearchResult,'process_type',sortReverseServ) ">
+                            Process type
+                            <span *ngIf="sortPropServ == 'process_type' && sortReverseServ"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropServ == 'process_type' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(servSearchResult,'process_name',sortReverseServ) ">
+                            Process name
+                            <span *ngIf="sortPropServ == 'process_name' && sortReverseServ"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropServ == 'process_name' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(servSearchResult,'process_interface',sortReverseServ) ">
+                            Process interface
+                            <span *ngIf="sortPropServ == 'process_interface' && sortReverseServ"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropServ == 'process_interface' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(servSearchResult,'object_type',sortReverseServ) ">
+                            Object type
+                            <span *ngIf="sortPropServ == 'object_type' && sortReverseServ"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropServ == 'object_type' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(servSearchResult,'object_name',sortReverseServ) ">
+                            Object name
+                            <span *ngIf="sortPropServ == 'object_name' && sortReverseServ"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropServ == 'object_name' && !sortReverseServ"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of servSearchResult"><!-- | orderBy:'_source.'+sortPropServ: sortReverseServ">-->
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.service_domain"
+                              [innerHTML]="item._source.service_domain "></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.service_group"
+                              [innerHTML]="item._source.service_group "></span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.service_name">
+                            <span class="fa fa-info-sign"></span>
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.service_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.service_id, item._source.service_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.service_id == id" class="bold-name"
+                                  [innerHTML]="item._source.service_name "></span>
+                            <a *ngIf="item._source.service_id != id"
+				href="#/object/servmodel?id={{item._source.service_id}}"
+				(click)="updateGetUrl(item._source.service_id, item._source.service_name)">
+                                <span [innerHTML]="item._source.service_name "></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="shadow-text" *ngIf="item._source.process_type"
+                              [innerHTML]="item._source.process_type "></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.process_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.process_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.process_id, item._source.process_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.process_id == id" class="bold-name"
+                                  [innerHTML]="item._source.process_name"></span>
+                            <a *ngIf="item._source.process_id != id"
+				href="#/object/servmodel?id={{item._source.process_id}}"
+				(click)="updateGetUrl(item._source.process_id, item._source.process_name)">
+                                <span [innerHTML]="item._source.process_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.process_interface == 'direct'">
+                            <span [innerHTML]="item._source.process_interface"></span>
+                        </span>
+                        <span *ngIf="item._source.process_interface != 'direct'">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.procitf_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.procitf_id, item._source.process_interface)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.procitf_id == id" class="bold-name"
+                                  [innerHTML]="item._source.process_interface"></span>
+                            <a *ngIf="item._source.procitf_id != id"
+				href="#/object/servmodel?id={{item._source.procitf_id}}"
+				(click)="updateGetUrl(item._source.procitf_id, item._source.process_interface)">
+                                <span [innerHTML]="item._source.process_interface "></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span class="shadow-text" *ngIf="item._source.object_type"
+                              [innerHTML]="item._source.object_type ">/</span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.object_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.object_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.object_id, item._source.object_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.object_id == id" class="bold-name"
+                                  [innerHTML]="item._source.object_name "></span>
+                            <a *ngIf="item._source.object_id != id"
+				href="#/object/servmodel?id={{item._source.object_id}}"
+				(click)="updateGetUrl(item._source.object_id, item._source.object_name)">
+                                <span [innerHTML]="item._source.object_name "></span>
+                            </a>
+                        </span>
+                    </td>
+                    <!--td [innerHTML]="item._source.responsible_engineer+' ('+item._source.responsible_engineer_login+')' "></td-->
+                </tr>
+                <!--<tr *ngIf="servSearchResult">
+                    <td colspan = "7" *ngIf="servSearchResult.length==0">No data found</td>
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="moreData" class="panel-footer">
+            <a (click)="getMoreData();" [innerHTML]="servText">{{servText}}</a>
+        </div>
+
+</div>
+ </div>

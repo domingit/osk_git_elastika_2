@@ -1,0 +1,184 @@
+<div>
+    <div *ngIf="infraSearchResult" class="container-fluid"> 
+        <div class="table-responsive" *ngIf="infraSearchResult">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        <a (click)="sortData(infraSearchResult,'system_name',sortReverseInfra) ">   
+                            System name
+                            <span *ngIf="sortPropInfra == 'system_name' && sortReverseInfra"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropInfra == 'system_name' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(infraSearchResult,'status',sortReverseInfra) "> 
+                            Status
+                            <span *ngIf="sortPropInfra == 'status' && sortReverseInfra"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropInfra == 'status' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(infraSearchResult,'consists_of_name',sortReverseInfra) "> 
+                            Consists of name
+                            <span *ngIf="sortPropInfra == 'consists_of_name' && sortReverseInfra"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropInfra == 'consists_of_name' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(infraSearchResult,'consists_of_status',sortReverseInfra) "> 
+                            Consists of status
+                            <span *ngIf="sortPropInfra == 'consists_of_status' && sortReverseInfra"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropInfra == 'consists_of_status' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(infraSearchResult,'depends_on_name',sortReverseInfra) "> 
+                            Depends on name
+                            <span *ngIf="sortPropInfra == 'depends_on_name' && sortReverseInfra"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropInfra == 'depends_on_name' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(infraSearchResult,'depends_on_status',sortReverseInfra) "> 
+                            Depends on status
+                            <span *ngIf="sortPropInfra == 'depends_on_status' && sortReverseInfra"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropInfra == 'depends_on_status' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(infraSearchResult,'runs_on_eqp_type',sortReverseInfra) "> 
+                            Runs on type
+                            <span *ngIf="sortPropInfra == 'runs_on_eqp_type' && sortReverseInfra"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropInfra == 'runs_on_eqp_type' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(infraSearchResult,'runs_on_name',sortReverseInfra) "> 
+                            Runs on name
+                            <span *ngIf="sortPropInfra == 'runs_on_name' && sortReverseInfra"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropInfra == 'runs_on_name' && !sortReverseInfra"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    
+                <tr *ngFor="let item of infraSearchResult">
+                    <td>
+                        <span *ngIf="item._source.system_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.aris_system_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.aris_system_id,item._source.system_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.aris_system_id == id" class="bold-name"
+                                  [innerHTML]="item._source.system_name"></span>
+                            <a *ngIf="item._source.aris_system_id != id"
+				href="#/object/inframodel?id={{item._source.aris_system_id}}"
+				(click)="updateGetUrl(item._source.aris_system_id,item._source.system_name)">
+                                <span [innerHTML]="item._source.system_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.standardization_status"
+                              [innerHTML]="item._source.standardization_status"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.consists_of_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.ngi_consists_of_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.ngi_consists_of_id,item._source.consists_of_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.ngi_consists_of_id == id" class="bold-name"
+                                  [innerHTML]="item._source.consists_of_name"></span>
+                            <a *ngIf="item._source.ngi_consists_of_id != id"
+				href="#/object/inframodel?id={{item._source.ngi_consists_of_id}}"
+				(click)="updateGetUrl(item._source.ngi_consists_of_id,item._source.consists_of_name)">
+                                <span [innerHTML]="item._source.consists_of_name"></span>
+                            </a>
+                            <span class="shadow-text" *ngIf="item._source.consists_of_type"
+                                  [innerHTML]="' ('+item._source.consists_of_type+')'"></span>
+                        </span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.consists_of_status"
+                              [innerHTML]="item._source.consists_of_status"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.depends_on_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.ngi_depends_on_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.ngi_depends_on_id,item._source.depends_on_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.ngi_depends_on_id == id" class="bold-name"
+                                  [innerHTML]="item._source.depends_on_name"></span>
+                            <a *ngIf="item._source.ngi_depends_on_id != id"
+				href="#/object/inframodel?id={{item._source.ngi_depends_on_id}}"
+				(click)="updateGetUrl(item._source.ngi_depends_on_id,item._source.depends_on_name)">
+                                <span [innerHTML]="item._source.depends_on_name"></span>
+                            </a>
+                            <span class="shadow-text" *ngIf="item._source.depends_on_type"
+                                  [innerHTML]="' ('+item._source.depends_on_type+')'"></span>
+                        </span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.depends_on_status"
+                              [innerHTML]="item._source.depends_on_status"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span class="shadow-text" *ngIf="item._source.runs_on_type"
+                              [innerHTML]="item._source.runs_on_type">/</span>
+                        <span *ngIf="item._source.runs_on_eqp_type">
+                            <span class="shadow-text"
+                                  [innerHTML]="'/'+item._source.runs_on_eqp_type"></span>
+                        </span>
+                    </td>
+                    <td>
+                        <a class="anchorimg"
+				href="#/object/info?id={{item._source.ngi_runs_on_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.ngi_runs_on_id, item._source.runs_on_name)">
+			            <i class="pulse fa fa-info-circle fa-lg"></i>
+                        </a>
+                        <span *ngIf="item._source.runs_on_name">
+                            <span *ngIf="item._source.ngi_runs_on_id == id" class="bold-name" class="bold-name"
+                                  [innerHTML]="item._source.runs_on_name"></span>
+                            <a *ngIf="item._source.ngi_runs_on_id != id"
+				href="#/object/inframodel?id={{item._source.ngi_runs_on_id}}"
+				(click)="updateGetUrl(item._source.ngi_runs_on_id, item._source.runs_on_name);">
+                                <span [innerHTML]="item._source.runs_on_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <!--td [innerHTML]="item._source.responsible_engineer+' ('+item._source.responsible_engineer_login+')'"></td-->
+                </tr>
+                <!--<tr *ngIf="infraSearchResult">
+                    <td colspan = "7" *ngIf="infraSearchResult.length==0">No data found</td>
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="moreData" class="panel-footer">
+            <a (click)="getMoreData();" [innerHTML]="infraText">{{infraText}}</a>
+        </div>
+    </div>
+</div>

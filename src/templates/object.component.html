@@ -1,0 +1,27 @@
+<div class="container-fluid row container-fluid-correction">
+    <div class="panel panel-primary">
+        <div class="panel-heading panel-heading-correction" *ngIf="getSearchLabel()">
+          <!--<div class="panel-heading" *ngIf="getSearchLabel()">-->
+            <h3 class="panel-title ">{{head_title}}</h3>
+            <div class="navbar-header">
+            <button type="button" class="navbar-correction navbar-toggle collapsed pills-correction" (click)="toggleState()">
+                <span class="sr-only">Toggle navigation</span>
+		<i class="fa fa-bars"></i>
+            </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-correction tabs-correction" [ngClass]="{ 'in': isIn }">
+                <div class="nav navbar-right">
+                    <ul class="nav nav-pills">
+                        <ng-container *ngFor="let tabz of filteredTabs" id="tabs">
+                            <li *ngIf="!tabz.hidden" href class="routing_link" [routerLink]="[tabz.routerLink]" [queryParamsHandling]="'merge'"
+                            [routerLinkActive]="['active']" [class.disabled]="tabz.disabled">
+                                <a id="pillsText" data-toggle="pill" class="pillsText waves-effect" [routerLinkActive]="['active']" [class.disabled]="tabz.disabled">
+				    <i class="{{tabz.icon}} icontab"></i><span class="hidden-xs">{{tabz.content}}</span></a></li>
+                        </ng-container>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

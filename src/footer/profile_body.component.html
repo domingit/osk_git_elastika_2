@@ -1,0 +1,15 @@
+<table *ngIf="user">
+    <tr>
+        <td>
+            <img *ngIf="user.profile_photo_url" class="photo-info" [src]="user.profile_photo_url" alt="Photo" />
+            <img *ngIf="!user.profile_photo_url" class="photo-info" alt="Photo" />
+        </td>
+        <td>
+            <strong>{{user.name}}</strong>
+            <div>{{user.email}}</div>
+            <br>
+            <div [hidden]="!signedIn" class="right profile-button-correction"><label class="btn btn-info waves-effect" (click)="accountInfo()">My IDP account</label></div>
+        </td>
+    </tr>
+</table>
+<span *ngIf="!user"> You are not signed in!</span>

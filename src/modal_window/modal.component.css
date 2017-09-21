@@ -1,0 +1,24 @@
+.modal {
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    border-radius: 2px;
+}
+
+.close-button {
+    background-color: #337ab7;
+    font-size: 14px;
+    line-height: 1px;
+    padding: 7px 5px;
+    border-radius: 50%;
+    color: white;
+    text-shadow:none;
+    opacity: 1;
+    margin-right:-2px;
+}
+
+.modal-header { 
+    background-color: #224562;
+    color: white;
+}

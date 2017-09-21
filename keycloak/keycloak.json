@@ -1,0 +1,8 @@
+{
+  "realm": "orange",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj2qlvZb2w9wLP80nCXgy0XD0E3ZI6Db4IHmW8DdzjfJDwUWy1OE/gzTc8HVo3nQOixQHfwcFlb9sowJe1dbzQhylCJPTHiKbds/h3KdjHlPjCGg2a542h1wEM75FcSOSUbd62GKKjdgyn/sN+blJQl2FYi6BbCAFth0lTScabJ+YMbp+TlQC9/XKIdTiiOvQzZc+RwEkvTUecWDLuj++t3CcUFDEcwpGon316FI5z7StKuVXH2IYraidTErF1Zizwq6aUDlz4MHJ5UqRg3FevNkNoYsqVOXaLTKgcXZhPo9TpVmOWTLIeMFoNNN922y6cV+Z546hgbIZlVAdCZKkcQIDAQAB",
+  "auth-server-url": "https://idp.orange.sk/auth",
+  "ssl-required": "external",
+  "resource": "elastika",
+  "public-client": true
+}

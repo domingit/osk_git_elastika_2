@@ -1,0 +1,134 @@
+<ng-template #rt let-r="result" let-t="term">
+     <!--<a>-->
+     <div class="container-fluid typeahead-template">
+       <div *ngIf="r._type === 'Person'">
+         <table>
+            <tr>
+              <td>
+                  <img class="photo-search" [src]="r._source.photoURL" alt=""/>
+              </td>
+              <td>
+                <span style="display:block;">
+                  <span class="name" [innerHTML]="r.highlight.name[0]"></span>
+                  <span *ngIf="r.highlight.login">
+                    (<span style="font-style: italic;" [innerHTML]="r.highlight.login[0]"></span>)
+                  </span>
+                  <span style="color:#f0ad4e;font-style: italic;"> as
+                    <span [innerHTML]="r._type"></span>
+                  </span>
+                </span>
+                <span style="font-style: italic;display:block;">
+                  <span *ngIf="r.highlight.position_name">
+                    <span [innerHTML]="r.highlight.position_name[0]"></span>
+                  </span>
+                  <span *ngIf="r.highlight.unit_name">
+                        ,&nbsp;<span [innerHTML]="r.highlight.unit_name[0]"></span>
+                  </span>
+                  <span *ngIf="r.highlight.company_name">
+                        &nbsp;(<span [innerHTML]="r.highlight.company_name[0]"></span>)
+                  </span>
+                </span>
+                <span *ngIf="r.highlight.orange_id"
+                      [innerHTML]="r.highlight.orange_id[0]"></span>
+                <span *ngIf="r.highlight.work_number">
+                      &nbsp;&nbsp;<i class="fa fa-phone"></i><span [innerHTML]="r.highlight.work_number[0]"></span>
+                </span>
+                <span *ngIf="r.highlight.mobile_number">
+                      &nbsp;&nbsp;<i class="fa fa-phone"></i><span [innerHTML]="r.highlight.mobile_number[0]"></span>
+                </span>
+                <span *ngIf="r.highlight.sip_number">
+                      &nbsp;&nbsp;<i class="fa fa-phone"></i><span [innerHTML]="r.highlight.sip_number[0]"></span>
+                </span>
+              </td>
+            </tr>
+          </table>
+       </div>
+       <div *ngIf="r._type !== 'Person'">
+         <span style="display:block;">
+           <span class="name" [innerHTML]="r.highlight.name[0]"></span>
+           <span *ngIf="r._source.alternative_name">
+              (<span style="font-style: italic;" [innerHTML]="r.highlight.alternative_name[0]"></span>)
+            </span>
+            <span *ngIf="r._source.ip_addresses">
+                (<span [innerHTML]="r.highlight.ip_addresses[0]"></span>)
+            </span>
+            <span style="color:#f0ad4e;font-style: italic;"> as
+                <span [innerHTML]="r._type"></span>
+            </span>
+         </span>
+         <div style="font-style: italic;" *ngIf="r._source.parent_term_name">
+           <span [innerHTML]="r.highlight.parent_term_name[0]"></span>
+         </div>
+         <div style="font-style: italic;" *ngIf="r.highlight.domain">
+           <span [innerHTML]="r.highlight.domain[0]"></span>
+           <span *ngIf="r.highlight.group">
+               /<span [innerHTML]="r.highlight.group[0]"></span>
+           </span>
+           <span *ngIf="r.highlight.subdomain">
+               /<span [innerHTML]="r.highlight.subdomain[0]"></span>
+           </span>
+         </div>
+         <div style="font-style: italic;" *ngIf="r.highlight.type">
+           <span [innerHTML]="r.highlight.type[0]"></span>
+           <span *ngIf="r.highlight.subtype">
+               /<span [innerHTML]="r.highlight.subtype[0]"></span>
+           </span>
+         </div>
+         <div *ngIf="r.highlight.description">
+            <span [innerHTML]="r.highlight.description[0]"></span>...
+	          <span *ngIf="r.highlight.description">
+              <span [innerHTML]="r.highlight.description[0]"></span>...
+            </span>
+        </div>
+        <div *ngIf="r.highlight.remark">
+            <span [innerHTML]="r.highlight.remark[0]"></span>...
+	          <span *ngIf="r.highlight.remark">
+              <span [innerHTML]="r.highlight.remark[0]"></span>...
+            </span>
+        </div>
+       </div>
+    </div>
+     <!--</a>-->
+</ng-template>
+<!--<input id="searchField" 
+    type="search" 
+    class="form-control search-field" 
+    placeholder={{searchText}}
+    [focusFirst]="true"
+    [disabled]="!signedIn" 
+    [(ngModel)]="model" 
+    [ngbTypeahead]="search" 
+    [resultTemplate]="rt"
+    [inputFormatter]="formatter"
+    [resultFormatter]="formatter2"
+    (selectItem)="selectedItem($event)" />-->
+
+  <input id="searchField" 
+    type="search" 
+    class="col-xs-4 form-control search-field" 
+    placeholder={{searchText}}
+    [focusFirst]="true"
+    [disabled]="!signedIn" 
+    [(ngModel)]="model" 
+    [ngbTypeahead]="search" 
+    [resultTemplate]="rt"
+    [inputFormatter]="formatter"
+    (selectItem)="selectedItem($event)"
+    (ngModelChange)="valuechange($event)"
+     />
+
+  
+<div *ngIf="searching" class="col-xs-2 sk-fading-circle">
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+</div>

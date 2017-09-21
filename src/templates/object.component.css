@@ -1,0 +1,77 @@
+.pillsText {
+    /*color: white !important;*/
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    background-color: #1B384F;
+}
+
+.pillsText.a {
+    color: white !important;
+}
+
+.pillsText:hover {
+    color: white !important;
+}
+
+.pillsText:active{
+    color: white !important;
+}
+
+.nav-pills>li>a{
+    padding-top: 7px;
+    padding-bottom: 6px;
+    border-radius: 2px;
+}
+
+.nav-pills>li>a:hover{
+    background-color: #42aadd !important;
+}
+
+.nav>li{
+    outline: 0;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    padding-top: 7px;
+    padding-bottom: 6px;
+    background-color: #42aadd !important;
+    cursor: default;
+}
+
+.icon-bar{
+    background-color: white;
+}
+
+.panel-title {
+    position: absolute;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    padding-left: 12px !important;
+}
+
+.navbar-correction {
+    margin: 0px !important;
+}
+
+.pills-correction {
+    padding-bottom: 5px;
+    padding-top: 6px;
+    padding-right: 10px;
+    outline: 0;
+}
+
+@media (max-width: 767px) {
+    .nav {
+    }
+}
+
+.tabs-correction {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+.icontab {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+

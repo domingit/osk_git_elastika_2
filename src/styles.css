@@ -1,0 +1,837 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.nav-brand-img-correction {
+    border: 0px solid #fff;
+    float: left;
+    height: 40px;
+    width: 40px;
+    margin-top: 1px;
+    overflow: hidden;
+}
+
+.anchorimg:hover {
+    text-decoration: none;
+}
+
+.photo-info{
+    max-width:72px;
+    max-height:96px;
+    border-radius: 2px;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.photo-search{
+    max-width: 36px;
+    max-height: 48px;
+    border-radius: 2px;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+/*PULSE*/
+.pulse {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    text-decoration: none;
+}
+
+.pulse:hover {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
+}
+
+.pulse-light {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    text-decoration: none;
+}
+
+.pulse-light:hover {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+}
+
+/*MORPH*/
+.morph {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    text-decoration: none;
+}
+
+.morph:hover {
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+
+/* Pegi - fixing of main search dropdown menu to fit white area*/
+.dropdown-menu>li>a {
+    padding: 3px 0px;
+    white-space: normal;
+}
+
+.dropdown-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+
+@media (max-height: 699px) and (min-height: 520px) {
+    .dropdown-menu {
+        max-height: 470px;
+    }
+}
+
+@media (max-height: 1000px) and (min-height: 700px) {
+    .dropdown-menu {
+        max-height: 650px;
+    }
+}
+
+@media (min-height: 900px) {
+    .dropdown-menu {
+        max-height: 850px;
+    }
+}
+
+
+/* Pegi - hot fix till I find nicer solution */
+.search-field {
+    width: 340px;
+    margin-top: 8px;
+    margin-left: -3px;
+    margin-right: 0px;
+    border-radius: 2px;
+}
+
+body {
+    font-family: "RobotoDraft", Helvetika, Arial, sans-serif;
+    padding-top: 65px;
+    font-size: 14px;
+}
+
+.navbar-brand {
+    padding: 4px;
+    /* firefox bug fix */
+}
+
+.navbar-brand>img {
+    height: 100%;
+    padding: 4px;
+    /* firefox bug fix */
+    width: auto;
+}
+
+.navbar-fixed-top{
+    border-width: 0;
+}
+
+.navbar-form {
+    margin-top: 0px;
+    margin-right: -15px;
+    margin-bottom: 8px;
+    margin-left: -15px;
+}
+
+.first-time-page {
+    background-image: url('./assets/background_v3.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    text-align: center;
+    color: white;
+    margin-top: -20px;
+}
+
+.first-time-page h1 {
+    margin-top: 200px;
+    margin-bottom: 0px;
+    font-size: 70px;
+    font-weight: 300;
+}
+
+.first-time-page h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 30px;
+}
+
+.first-time-page h3 {
+    margin-top: 0px;
+    margin-bottom: 320px;
+    font-size: 20px;
+    font-color: red;
+}
+
+.modal-sm img {
+    margin-right: 20px;
+}
+
+.modal-sm {
+    margin: 10px auto;
+    word-break: break-all;
+}
+
+.navbar-header{
+    background-image: linear-gradient(to bottom, #224562 0%, #274F70 100%);
+}
+
+@media (min-width: 992px){
+    .modal-lg {
+        width: 750px;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-header{
+	float:none;
+	background-image: linear-gradient(to bottom, #224562 0%, #274F70 100%);
+    }
+
+    .navbar-right {
+        padding-bottom: 0px;
+	margin-right: 0px;
+    }
+
+    .modal-sm {
+        width: 400px;
+        word-break: break-all;
+        margin-left: 400px;
+        margin-top: 40px;
+    }
+}
+
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        /*height: 100%;*/
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/*https://stackoverflow.com/questions/18422223/bootstrap-3-modal-vertical-position-center*/
+
+.other-times-page {
+    margin-top: 100px;
+}
+
+
+/* Pegi - info as mail, phone, ... formating*/
+.info {
+    list-style: none;
+    padding: 0;
+}
+
+.info li {
+    padding-bottom: 10px;
+}
+
+.info i {
+    padding-right: 5px;
+}
+
+.col-md-2,
+.col-xs-6,
+.col-lg-2 {
+    padding: 5px;
+}
+
+.btn-info {
+    background-color: #1B384F;
+    color: #337ab7;
+    border: 0px;
+    border-radius: 2px;
+}
+
+.btn-info:active,
+.btn-info.active,
+.open>.dropdown-toggle.btn-info {
+    color: #337ab7;
+    background-color: #1B384F;
+}
+
+.btn-info:active,
+.btn-info.active {
+    color: #337ab7;
+    background-color: #1B384F;
+}
+
+.btn-info:hover {
+    background-color: #42aadd;
+}
+
+.btn-info:active:hover,
+.btn-info.active:hover,
+.open>.dropdown-toggle.btn-info:hover,
+.btn-info:active:focus,
+.btn-info.active:focus,
+.open>.dropdown-toggle.btn-info:focus,
+.btn-info:active.focus,
+.btn-info.active.focus,
+.open>.dropdown-toggle.btn-info.focus {
+    color: white;
+    background-color: #42aadd;
+    outline: none;
+}
+
+/* Pegi - custom button similar to toggle for indices choose*/
+.btn-custom {
+    color: #337ab7;
+    background-color: #1B384F;
+    border-radius: 2px;
+    border: 0px;
+}
+
+.btn-custom:focus,
+.btn-custom.focus {
+    color: #337ab7;
+    background-color: #1B384F;
+}
+
+.btn-custom:hover {
+    background-color: #42aadd;
+}
+
+.btn-custom:active,
+.btn-custom.active,
+.open>.dropdown-toggle.btn-custom {
+    color: #337ab7;
+    background-color: #1B384F;
+    box-shadow: none;
+    -webkit-box-shadow:none;
+}
+
+.btn-custom:active,
+.btn-custom.active {
+    color: white;
+    background-color: #337ab7;
+}
+
+.btn-custom:active:hover,
+.btn-custom.active:hover,
+.open>.dropdown-toggle.btn-custom:hover,
+.btn-custom:active:focus,
+.btn-custom.active:focus,
+.open>.dropdown-toggle.btn-custom:focus,
+.btn-custom:active.focus,
+.btn-custom.active.focus,
+.open>.dropdown-toggle.btn-custom.focus {
+    color: white;
+    background-color: #42aadd;
+    outline: none;
+}
+
+.btn-custom.disabled:hover,
+.btn-custom[disabled]:hover,
+fieldset[disabled] .btn-custom:hover,
+.btn-custom.disabled:focus,
+.btn-custom[disabled]:focus,
+fieldset[disabled] .btn-custom:focus,
+.btn-custom.disabled.focus,
+.btn-custom[disabled].focus,
+fieldset[disabled] .btn-custom.focus {
+    background-color: #337ab7;
+}
+
+.btn-custom .badge {
+    color: #337ab7;
+    background-color: #fff;
+}
+
+footer {
+    position: static;
+    bottom: 0;
+}
+
+.footer-distributed {
+    background-image: linear-gradient(to bottom, #224562 0%, #234866 100%);
+    /*background-image: linear-gradient(to bottom, #224562 0%, #274F70 100%);*/
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    /*font: bold 16px sans-serif;*/
+    color: #92999f;
+    padding: 55px 50px;
+    margin-top: 0px;
+}
+
+.footer-distributed a:hover {
+    color: #2A6699;
+    text-decoration: none;
+}
+
+.footer-distributed a {
+    text-decoration: none;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 20px;
+    color: #92999f;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-left span,
+.footer-distributed .footer-center span,
+.footer-distributed .footer-right span {
+    display: block;
+    /*color:  #ffffff;*/
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-distributed .footer-left h4,
+.footer-distributed .footer-center h4,
+.footer-distributed .footer-right h4 {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-distributed .footer-left {
+    width: 35%;
+}
+
+.footer-distributed .footer-center {
+    width: 40%;
+}
+
+.footer-distributed .footer-right {
+    width: 22%;
+}
+
+.footer-distributed .footer-left i,
+.footer-distributed .footer-center i {
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.footer-distributed .footer-left>img {
+    height: 100%;
+    padding: 10px;
+    /* firefox bug fix */
+    width: 60px;
+    margin-left: -10px;
+}
+
+@media (max-width: 767px) {
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+    .nav-tabs {
+        border-bottom: 10px solid #eee;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .nav-tabs>li {
+        float: left;
+        margin-bottom: 0px;
+    }
+    .navbar-form .btn {
+        margin-top: 4px;
+        margin-bottom: -2px;
+        margin-left: 0px;
+    }
+    .nav-tabs {
+        margin-top: 0px;
+        margin-left: -8px;
+        margin-bottom: 0px;
+        border-bottom: 0px solid #eee;
+        /*cursor:pointer;*/
+    }
+    .navbar-form {
+        margin-top: -6px;
+        margin-left: -23px;
+    }
+    .nav {
+	margin-top: 1px;
+    }
+    .first-time-page h1 {
+        margin-top: 50px;
+        margin-bottom: 0px;
+        font-size: 50px;
+    }
+
+    .first-time-page h2 {
+        margin-top: 0px;
+        margin-bottom: 50px;
+        font-size: 20px;
+    }
+    .other-times-page {
+        margin-top: 50px;
+    }
+
+    .search-field {
+        width: 340px;
+        margin-top: 8px;
+        margin-left: -3px;
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 390px) {
+    .search-field {
+        width: 260px;
+        margin-top: 8px;
+        margin-left: -3px;
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 333px) {
+    .search-field {
+        width: 220px;
+        margin-top: 8px;
+        margin-left: -3px;
+        margin-right: 0px;
+    }
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: searchfield-cancel-button;
+}
+
+[hidden] {
+    display: none;
+}
+
+.dropdown-menu button:active,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu.active a {
+    background-color: #2e6da4 !important;
+}
+
+.dropdown-item.active {
+    background-color: #2e6da4 !important;
+    color: white !important;
+}
+
+.dropdown-menu button {
+    color: black !important;
+    width: 100% !important;
+    text-align: left !important;
+    display: block;
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 0px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+}
+
+.dropdown-item:after {
+    content: "";
+    display: block;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+.dropdown-menu a {
+    text-align: left !important;
+    color: black;
+}
+
+.firstPage {
+    background-color: black;
+}
+
+.table-responsive {
+    margin-bottom: 15px !important;
+    border: 1px solid #224562;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 2px !important;
+    border-bottom-right-radius: 2px !important;
+}
+
+.table-bordered {
+    margin-bottom: 0px !important;
+}
+
+.orange-logo {
+    height: 100%;
+    padding: 10px;
+    width: 60px;
+    margin-left: -10px;
+}
+
+.list-group {
+    margin-bottom: 0px !important;
+    border: 1px solid #224562;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.panel-body-corr {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 15px !important;
+}
+
+.panel-footer {
+    border-top: 0px solid #ddd;
+    background-color: #fff;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+}
+
+.panel-heading-correction {
+    border-top-left-radius: 2px !important;
+    border-top-right-radius: 2px !important;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom:-1px;
+    padding-bottom: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 2px;
+    background-image:         linear-gradient(to bottom, #224562 0%, #274F70 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#224562', endColorstr='#274F70', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #dbdbdb;
+    border-color: #ccc;
+}
+
+.container-fluid-correction {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.bold-name {
+    font-weight: bold;
+}
+
+.shadow-text {
+    color:#aaa;
+    font-style: italic;
+}
+
+.panel {
+    border: none;
+    margin-bottom: 0px;
+    padding-top: 15px;
+    border-radius: 0px;
+    margin-top: -15px;
+}
+
+.typeahead-template {
+    pointer-events: none;
+}
+
+.typeahead-template:active {
+    color: white;
+}
+
+.status-inEvaluation {
+    color: #f2f2c2;
+}
+
+.status-standard {
+    color: #27b151;
+}
+
+.status-limitedUse {
+    color: #2751b1;
+}
+
+.status-phasedOut {
+    color: #d51b1b;
+}
+
+.status-toBePhasedOut {
+    color: #f4c317;
+}
+
+.status-toBeDismissed {
+    color: #f4c317;
+}
+
+.status-dismissed {
+    color: #d0d0d0;
+}
+
+.status-toBePhasedIn {
+    color: #98edb2;
+}
+
+.status-nonStandard {
+    color: #f37e7b;
+}
+
+.status-external {
+    color: black;
+}
+
+.status-serv-planned {
+    color: #27b151;
+}
+
+.status-serv-active {
+    color: #27b151;
+}
+
+.status-serv-decomissioned {
+    color: #d0d0d0;
+}
+
+.status-prod-planned {
+    color: #98edb2;
+}
+
+.status-prod-online {
+    color: #27b151;
+}
+
+.status-prod-historical {
+    color: #d0d0d0;
+}
+
+.app-modal-body h4{
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.app-modal-body span{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity, transform;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.waves-effect .waves-ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.waves-effect.waves-light .waves-ripple {
+  background-color: rgba(255, 255, 255, 0.45);
+} 
+
+/* Firefox Bug: link not triggered */
+a.waves-effect .waves-ripple {
+  z-index: -1;
+}
+
+.profile-button-correction {
+    margin-bottom: -5px;
+}
+
+.version-text {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: rgb(117, 117, 117);
+}
+

@@ -1,0 +1,110 @@
+<div>
+<div *ngIf="btrelSearchResult" class="container-fluid"> 
+        <div class="table-responsive" *ngIf="btrelSearchResult">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(btrelSearchResult,'type_a',sortReverseBTRel) ">
+                            Type
+                            <span *ngIf="sortPropBTRel == 'type_a' && sortReverseBTRel"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropBTRel == 'type_a' && !sortReverseBTRel"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(btrelSearchResult,'what_a_name',sortReverseBTRel)">
+                            What
+                            <span *ngIf="sortPropBTRel == 'what_a_name' && sortReverseBTRel"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropBTRel == 'what_a_name' && !sortReverseBTRel"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(btrelSearchResult,'relation',sortReverseBTRel)">
+                            Relation
+                            <span *ngIf="sortPropBTRel == 'relation' && sortReverseBTRel"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropBTRel == 'relation' && !sortReverseBTRel"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(btrelSearchResult,'type_b',sortReverseBTRel) ">
+                            Type
+                            <span *ngIf="sortPropBTRel == 'type_b' && sortReverseBTRel"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropBTRel == 'type_b' && !sortReverseBTRel"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(btrelSearchResult,'what_b_name',sortReverseBTRel)">
+                            What
+                            <span *ngIf="sortPropBTRel == 'what_b_name' && sortReverseBTRel"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropBTRel == 'what_b_name' && !sortReverseBTRel"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of btrelSearchResult">
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.type_a" [innerHTML]="item._source.type_a"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.what_a_name">
+                            <a class="anchorimg" 
+				href="#/object/info?id={{item._source.what_a_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.what_a_id, item._source.what_a_name)">
+		                <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.what_a_id == id" class="bold-name"
+                                [innerHTML]="item._source.what_a_name"></span>
+                            <a *ngIf="item._source.what_a_id != id"
+				href="#/object/btrelmodel?id={{item._source.what_a_id}}"
+				(click)="updateGetUrl(item._source.what_a_id, item._source.what_a_name);">
+                                <span *ngIf="item._source.what_a_name"
+                                      [innerHTML]="item._source.what_a_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.relation" [innerHTML]="item._source.relation"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.type_b" [innerHTML]="item._source.type_b"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.what_b_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.what_b_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.what_b_id, item._source.what_b_name)">
+		                <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.what_b_id == id" class="bold-name"
+                                [innerHTML]="item._source.what_b_name"></span>
+                            <a *ngIf="item._source.what_b_id != id"
+				href="#/object/btrelmodel?id={{item._source.what_b_id}}"
+				(click)="updateGetUrl(item._source.what_b_id, item._source.what_b_name);">
+                                <span *ngIf="item._source.what_b_name"
+                                      [innerHTML]="item._source.what_b_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+                <!--<tr *ngIf="btrelSearchResult">
+                    <td colspan = "7" *ngIf="btrelSearchResult.length==0">No data found</td>
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="moreData" class="panel-footer">
+            <a (click)="getMoreData();" [innerHTML]="btrelText">{{btrelText}}</a>
+        </div>
+</div>
+</div>

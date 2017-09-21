@@ -1,0 +1,16 @@
+<div (click)="onContainerClicked($event)" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="selectIndices" [ngClass]="{'in': visibleAnimate}" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" [hidden]="!showHeader">
+                <button type="button" (click)="hide()" class="close close-button pulse-light" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-close"></i></button>
+                <ng-content select=".app-modal-header"></ng-content>
+            </div>
+            <div class="modal-body">
+                <ng-content select=".app-modal-body"></ng-content>
+            </div>
+            <div class="modal-footer" [hidden]="!showFooter">
+                <ng-content select=".app-modal-footer"></ng-content>
+            </div>
+        </div>
+    </div>
+</div>

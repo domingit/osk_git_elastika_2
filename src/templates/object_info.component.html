@@ -1,0 +1,396 @@
+<div>
+<div *ngIf="getSearchLabel()" class="container-fluid">
+    <div *ngIf="getSearchLabel()" class="panel-body-corr">
+        <!--<div *ngIf="getSearchLabel()" class="row">-->
+        <div *ngIf="item?._source">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span>
+                            <div *ngIf="item._type == 'Person'">
+                                <p class="list-group-item-text" *ngIf="item._source.photoURL">
+                                    <img class="photo-info" [src]="item._source.photoURL" alt="Photo"/>
+                                </p>
+                                <p style="margin-top: 5px;" class="list-group-item-text">
+                                    <a (click)="navigateToTab(item._type,item._id, item._source.name)">
+                                        {{item._source.name}}
+                                        <span *ngIf="item._source.login">({{item._source.login}})</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div *ngIf="item._type != 'Person'">
+                            <a (click)="navigateToTab(item._type, item._id)">{{item._source.name}} </a>
+                            </div>
+                        </span>
+                    </h4>
+                    <p *ngIf="item._source.position_name" class="list-group-item-text" style="italic;margin-top: -5px;margin-bottom:15px;">
+                       	{{item._source.position_name}},&nbsp;{{item._source.unit_name}}
+                    </p>
+                    <p *ngIf="item._id" class="list-group-item-text">
+                        <strong>ID: </strong>
+                        <span *ngIf="item._source.inv_url">
+                            <a target="_blank" [href]="item._source.inv_url">{{item._id}}</a>
+                        </span>
+                        <span *ngIf="!item._source.inv_url">{{item._id}}</span>
+                    </p>
+                    <p *ngIf="item._source.domain_name" class="list-group-item-text">
+                        <strong>Domain: </strong> {{item._source.domain_name}}
+                    </p>
+                    <p *ngIf="item._source.status" class="list-group-item-text">
+                        <strong>Status: </strong>
+                        <span [ngClass]="{'status-standard': item._source.status === 'Standard', 
+                        'status-limitedUse': item._source.status === 'Standard - limited use', 
+                        'status-phasedOut': item._source.status === 'Phased out', 
+                        'status-toBePhasedOut': item._source.status === 'To be phased out', 
+                        'status-toBePhasedIn': item._source.status === 'To be phased in', 
+                        'status-external': item._source.status === 'External', 
+                        'status-nonStandard': item._source.status === 'Non-standard', 
+                        'status-inEvaluation': item._source.status === 'In evaluation', 
+                        'status-toBeDismissed': item._source.status === 'To be dismissed', 
+                        'status-dismissed': item._source.status === 'Dismissed',
+                        'status-serv-active' : item._source.status === 'ACTIVE', 
+                        'status-serv-planned': item._source.status === 'PLANNED',
+                        'status-serv-decomissioned': item._source.status === 'DECOMISSIONED',
+                        'status-prod-planned': item._source.status === 'Planned',
+                        'status-prod-online': item._source.status === 'On-line',
+                        'status-prod-historical': item._source.status === 'Historical'}">
+                        <i class="fa fa-circle"></i> </span>
+			{{item._source.status}}
+                    </p>
+                    <p *ngIf="0" class="list-group-item-text">
+                        <span class="status-inEvaluation"> <i class="fa fa-circle"></i>In evaluatio</span>
+                        <span class="status-nonStandard"> <i class="fa fa-circle"></i>Non-standard</span>
+                        <span class="status-toBePhasedIn"> <i class="fa fa-circle"></i>To be phased in</span>
+                        <span class="status-standard"> <i class="fa fa-circle"></i>Standard</span>
+                        <span class="status-limitedUse"> <i class="fa fa-circle"></i>Standard - limited use</span>
+                        <span class="status-toBePhasedOut"> <i class="fa fa-circle"></i>To be phased out</span>
+                        <span class="status-phasedOut"> <i class="fa fa-circle"></i>Phased out</span>
+                        <span class="status-toBeDismissed"> <i class="fa fa-circle"></i>To be dismissed</span>
+                        <span class="status-dismissed"> <i class="fa fa-circle"></i>Dismissed</span>
+                        <span class="status-external"> <i class="fa fa-circle"></i>External</span>
+                        <span class="status-serv-planned"> <i class="fa fa-circle"></i>PLANNED</span>
+                        <span class="status-serv-active"> <i class="fa fa-circle"></i>ACTIVE</span>
+                        <span class="status-serv-decomissioned"> <i class="fa fa-circle"></i>DECOMISSIONED</span>
+                        <span class="status-prod-planned"> <i class="fa fa-circle"></i>planned</span>
+                        <span class="status-prod-online"> <i class="fa fa-circle"></i>online</span>
+                        <span class="status-prod-historical"> <i class="fa fa-circle"></i>historical</span>
+                    </p>
+
+                    <p *ngIf="item._source.server_type" class="list-group-item-text">
+                        <strong>Type: </strong> {{item._source.server_type}}
+                    <span *ngIf="item._source.equipment_type" class="list-group-item-text">
+                        / {{item._source.equipment_type}}</span>
+                    </p>
+                    <p *ngIf="item._source.domain" class="list-group-item-text">
+                        <strong>Domain: </strong> {{item._source.domain}}
+                    </p>
+                    <p *ngIf="item._source.subdomain" class="list-group-item-text">
+                        <strong>Subdomain: </strong> {{item._source.subdomain}}
+                    </p>
+                    <p *ngIf="item._source.group" class="list-group-item-text">
+                        <strong>Group: </strong> {{item._source.group}}
+                    </p>
+                    <p *ngIf="item._source.short_alias" class="list-group-item-text">
+                        <strong>Short alias: </strong> {{item._source.short_alias}}
+                    </p>
+                    <p *ngIf="item._source.alternative_name" class="list-group-item-text">
+                        <strong>Alternative name: </strong> {{item._source.alternative_name}}
+                    </p>
+                    <p *ngIf="item._source.type" class="list-group-item-text">
+                        <strong>Type: </strong> {{item._source.type}}
+                    </p>
+                    <p *ngIf="item._source.subtype" class="list-group-item-text">
+                        <strong>Subtype: </strong> {{item._source.subtype}}
+                    </p>
+                    <p *ngIf="item._source.description" class="list-group-item-text">
+                        <strong>Description: </strong> {{item._source.description}}
+                    </p>
+                    <p *ngIf="item._source.remark" class="list-group-item-text">
+                        <strong>Remark: </strong> {{item._source.remark}}
+                    </p>
+                    <p *ngIf="item._source.customers" class="list-group-item-text">
+                        <strong>Customers: </strong> {{item._source.customers}}
+                    </p>
+                    <p *ngIf="item._source.value_revenues" class="list-group-item-text">
+                        <strong>Value revenues: </strong>{{item._source.value_revenues}}
+                    </p>
+                    <p *ngIf="item._source.value_efficiency" class="list-group-item-text">
+                        <strong>Value efficiency: </strong>{{item._source.value_efficiency}}
+                    </p>
+                    <p *ngIf="item._source.value_legal" class="list-group-item-text">
+                        <strong>Value legal: </strong>{{item._source.value_legal}}
+                    </p>
+                    <p *ngIf="item._source.value_businessloss" class="list-group-item-text">
+                        <strong>Value businessloss: </strong>{{item._source.value_businessloss}}
+                    </p>
+                    <p *ngIf="item._source.value_ttm" class="list-group-item-text">
+                        <strong>Value TTM: </strong>{{item._source.value_ttm}}
+                    </p>
+                    <p *ngIf="item._source.competitive_advantage" class="list-group-item-text">
+                        <strong>Competitive advantage: </strong>{{item._source.competitive_advantage}}
+                    </p>
+                    <p *ngIf="item._source.value_comment" class="list-group-item-text">
+                        <strong>Value comment: </strong>{{item._source.value_comment}}
+                    </p>
+                    <p *ngIf="item._source.access_managed" class="list-group-item-text">
+                        <strong>Access managed: </strong>{{item._source.access_managed}}
+                    </p>
+                    <p *ngIf="item._source.application" class="list-group-item-text">
+                        <strong>Application: </strong>{{item._source.application}}
+                    </p>
+                    <p *ngIf="item._source.link_url" class="list-group-item-text">
+                        <strong>Link: </strong>
+                        <a target="_blank" [href]="item._source.link_url">{{item._source.link_title}}</a>
+                    </p>
+                    <p *ngIf="item._source.pace_layer" class="list-group-item-text">
+                        <strong>Pace layer: </strong>{{item._source.pace_layer}}
+                    </p>
+                    <p *ngIf="item._source.customization" class="list-group-item-text">
+                        <strong>Customization: </strong>{{item._source.customization}}
+                    </p>
+                    <p *ngIf="item._source.support_contract_domain" class="list-group-item-text">
+                        <strong>Support contract domain: </strong>{{item._source.support_contract_domain}}
+                    </p>
+                    <p *ngIf="item._source.opex" class="list-group-item-text">
+                        <strong>OPEX: </strong>{{item._source.opex}}
+                    </p>
+                    <p *ngIf="item._source.opex_domain" class="list-group-item-text">
+                        <strong>OPEX domain: </strong>{{item._source.opex_domain}}
+                    </p>
+                    <p *ngIf="item._source.opex_comment" class="list-group-item-text">
+                        <strong>OPEX comment: </strong>{{item._source.opex_comment}}
+                    </p>
+                    <p *ngIf="item._source.drp_rto" class="list-group-item-text">
+                        <strong>DRP RTP: </strong>{{item._source.drp_rto}}
+                    </p>
+                    <p *ngIf="item._source.drp_rpo" class="list-group-item-text">
+                        <strong>DRP RPO: </strong>{{item._source.drp_rpo}}
+                    </p>
+                    <p *ngIf="item._source.drp_los" class="list-group-item-text">
+                        <strong>DRP LOS: </strong>{{item._source.drp_los}}
+                    </p>
+                    <p *ngIf="item._source.drp_review_date" class="list-group-item-text">
+                        <strong>DRP review date: </strong>{{item._source.drp_review_date}}
+                    </p>
+                    <p *ngIf="item._source.drp_applicability" class="list-group-item-text">
+                        <strong>DRP applicability: </strong>{{item._source.drp_applicability}}
+                    </p>
+                    <p *ngIf="item._source.drp_link" class="list-group-item-text">
+                        <strong>DRP link: </strong>
+                        <a target="_blank" [href]="item._source.drp_link">{{item._source.drp_link}}</a>
+                    </p>
+                    <p *ngIf="item._source.orange_id" class="list-group-item-text">
+                        <strong>Orange ID: </strong> {{item._source.orange_id}}
+                    </p>
+                    <p *ngIf="item._source.person_number" class="list-group-item-text">
+                        <strong>Person number: </strong> {{item._source.person_number}}
+                    </p>
+                    <p *ngIf="item._source.company_name" class="list-group-item-text">
+                        <strong>Company: </strong> {{item._source.company_name}}
+                    </p>
+                    <p *ngIf="item._source.locality" class="list-group-item-text">
+                        <strong>Locality: </strong> {{item._source.locality}}
+                    </p>
+                    <p *ngIf="item._source.building" class="list-group-item-text">
+                        <strong>Building: </strong> {{item._source.building}}
+                    </p>
+                    <p *ngIf="item._source.office" class="list-group-item-text">
+                        <strong>Office: </strong> {{item._source.office}}
+                    </p>
+                    <p *ngIf="item._source.email" class="list-group-item-text">
+                        <strong>Email: </strong>
+                        <a [href]="'mailto:'+item._source.email">{{item._source.email}}</a>
+                    </p>
+                    <p *ngIf="item._source.email" class="list-group-item-text">
+                        <strong>Email in HRMS: </strong>
+                        <a [href]="'mailto:'+item._source.email_HRMS">{{item._source.email_HRMS}}</a>
+                    </p>
+                    <p *ngIf="item._source.work_number" class="list-group-item-text">
+                        <strong>Work: </strong>
+                        <a [href]="'tel:'+item._source.work_number">{{item._source.work_number}}</a>
+                    </p>
+                    <p *ngIf="item._source.mobile_number" class="list-group-item-text">
+                        <strong>Mobile: </strong>
+                        <a [href]="'tel:'+item._source.mobile_number">{{item._source.mobile_number}}</a>
+                    </p>
+                    <p *ngIf="item._source.sip_number" class="list-group-item-text">
+                        <strong>SIP: </strong>
+                        <a [href]="'tel:'+item._source.sip_number">{{item._source.sip_number}}</a>
+                    </p>
+                    <p *ngIf="item._source.abbreviation" class="list-group-item-text">
+                        <strong>Abbreviation: </strong> {{item._source.abbreviation}}
+                    </p>
+                    <p *ngIf="item._source.synonyms" class="list-group-item-text">
+                        <strong>Synonyms: </strong> {{item._source.synonyms}}
+                    </p>
+                    <p *ngIf="item._source.category_of_term" class="list-group-item-text">
+                        <strong>Category of term: </strong> {{item._source.category_of_term}}
+                    </p>
+                    <p *ngIf="item._source.groups_of_term" class="list-group-item-text">
+                        <strong>Groups of term: </strong> {{item._source.groups_of_term}}
+                    </p>
+                    <p *ngIf="item._source.calcualtion_component" class="list-group-item-text">
+                        <strong>Calcualtion component: </strong> {{item._source.calcualtion_component}}
+                    </p>
+                    <p></p>
+                    <p *ngIf="item._source.purpose_of_term_launch_task" class="list-group-item-text">
+                        <strong>Purpose of term launch-task: </strong> {{item._source.purpose_of_term_launch_task}}
+                    </p>
+                    <p *ngIf="item._source.purpose_of_term_launch_report" class="list-group-item-text">
+                        <strong>Purpose of term launch-report: </strong> {{item._source.purpose_of_term_launch_report}}
+                    </p>
+                    <p *ngIf="item._source.purpose_of_term_launch_attr_name" class="list-group-item-text">
+                        <strong>Purpose of term launch-attr: </strong> {{item._source.purpose_of_term_launch_attr_name}}
+                    </p>
+                    <p *ngIf="item._source.purpose_of_term_launch_attr_desc" class="list-group-item-text">
+                        <strong>Purpose of term launch-attr description: </strong> {{item._source.purpose_of_term_launch_attr_desc}}
+                    </p>
+                    <p></p>
+                    <p *ngIf="item._source.ip_addresses" class="list-group-item-text">
+                        <strong>IP addresses: </strong> {{item._source.ip_addresses}}
+                    </p>
+                    <p *ngIf="item._source.responsible_engineer" class="list-group-item-text">
+                        <strong>Responsible Engineer: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.responsible_engineer_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.responsible_engineer_id)">
+                            {{item._source.responsible_engineer}}
+		            <span *ngIf="item._source.responsible_engineer_login">({{item._source.responsible_engineer_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.accountable_eng_manager" class="list-group-item-text">
+                        <strong>Accountable Eng. Manager: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.accountable_eng_manager_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.accountable_eng_manager_id)">
+                            {{item._source.accountable_eng_manager}}
+		                    <span *ngIf="item._source.accountable_eng_manager_login">({{item._source.accountable_eng_manager_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.accountable_oper_manager" class="list-group-item-text">
+                        <strong>Accountable Oper. Manager: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.accountable_oper_manager_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.accountable_oper_manager_id)">
+                            {{item._source.accountable_oper_manager}}
+		            <span *ngIf="item._source.accountable_oper_manager_login">({{item._source.accountable_oper_manager_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.contact_person" class="list-group-item-text">
+                        <strong>Contact Person: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.contact_person_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.contact_person_id)">
+                            {{item._source.contact_person}}
+		            <span *ngIf="item._source.contact_person_login">({{item._source.contact_person_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.access_guarantee" class="list-group-item-text">
+                        <strong>Access guarantee: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.access_guarantee_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.access_guarantee_id)">
+                            {{item._source.access_guarantee}}
+		            <span *ngIf="item._source.access_guarantee_login">({{item._source.access_guarantee_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.bussiness_owner" class="list-group-item-text">
+                        <strong>Bussiness Owner: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.bussiness_owner_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.bussiness_owner_id)">
+                            {{item._source.bussiness_owner}}
+		            <span *ngIf="item._source.bussiness_owner_login">({{item._source.bussiness_owner_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.service_manager" class="list-group-item-text">
+                        <strong>Service Manager: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.service_manager_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.service_manager_id)">
+                            {{item._source.service_manager}}
+		            <span *ngIf="item._source.service_manager_login">({{item._source.service_manager_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.operation_manager" class="list-group-item-text">
+                        <strong>Operation Manager: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.operation_manager_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.operation_manager_id)">
+                            {{item._source.operation_manager}}
+		            <span *ngIf="item._source.operation_manager_login">({{item._source.operation_manager_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.architect" class="list-group-item-text">
+                        <strong>Architect: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.architect_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.architect_id)">
+                            {{item._source.architect}}
+		            <span *ngIf="item._source.architect_login">({{item._source.architect_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.author" class="list-group-item-text">
+                        <strong>Author: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.author_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.author_id)">
+                            {{item._source.author}}
+		            <span *ngIf="item._source.author_login">({{item._source.author_login}})</span>
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.supplier" class="list-group-item-text">
+                        <strong>Supplier: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.supplier_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.supplier_id)">
+                            {{item._source.supplier}}
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.supporter" class="list-group-item-text">
+                        <strong>Supporter: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.supporter_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.supporter_id)">
+                            {{item._source.supporter}}
+                        </a>
+                    </p>
+                    <p *ngIf="item._source.manufacturer" class="list-group-item-text">
+                        <strong>Manufacturer: </strong>
+                        <a  href="#/object/respmodel?id={{item._source.manufacturer_id}}"
+			    (click)="navigateToTabLink('/object/respmodel',item._source.manufacturer_id)">
+                            {{item._source.manufacturer}}
+                        </a>
+                    </p>
+                    <p></p>
+                    <p *ngIf="item._source.t3_phase_in_phase_end" class="list-group-item-text">
+                        <strong>Phase in phase end(T3): </strong>{{item._source.t3_phase_in_phase_end}}
+                    </p>
+                    <p *ngIf="item._source.in_operation_end" class="list-group-item-text">
+                        <strong>In operation end: </strong>{{item._source.in_operation_end}}
+                    </p>
+                    <p *ngIf="item._source.phased_out_phase_end" class="list-group-item-text">
+                        <strong>Phased out phase end: </strong>{{item._source.phased_out_phase_end}}
+                    </p>
+		    <p *ngIf="item._source.creation_date" class="list-group-item-text">
+                        <strong>Creation date: </strong>{{item._source.creation_date}}
+                    </p>
+                    <p *ngIf="item._source.creator_login" class="list-group-item-text">
+                        <strong>Creator: </strong>{{item._source.creator}}
+                        ({{item._source.creator_login}})
+                    </p>
+                    <p *ngIf="item._source.last_modified_by_login" class="list-group-item-text">
+                        <strong>Last modified by: </strong>{{item._source.last_modified_by}}
+                        ({{item._source.last_modified_by_login}})
+                    </p>
+                    <p *ngIf="item._source.last_modified_date" class="list-group-item-text">
+                        <strong>Last modified date: </strong>{{item._source.last_modified_date}}
+                    </p>
+                    <p *ngIf="item._source.start_date" class="list-group-item-text">
+                        <strong>Start date: </strong>{{item._source.start_date}}
+                    </p>
+                    <p *ngIf="item._source.end_date" class="list-group-item-text">
+                        <strong>End date: </strong>{{item._source.end_date}}
+                    </p>
+                    <p></p>
+                    <p *ngIf="item._source.models" class="list-group-item-text">
+                        <strong>ARIS models:</strong>
+			            <span *ngFor="let model of item._source.models">
+                            <br />
+                            <a target="aris_bp" [href]="model.model_url">{{model.model_name}} </a>
+                    	</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>

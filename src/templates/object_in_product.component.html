@@ -1,0 +1,135 @@
+<div>
+    <div *ngIf="prodSearchResult" class="container-fluid"> 
+        <div class="table-responsive" *ngIf="prodSearchResult">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(prodSearchResult,'service_domain',sortReverseProd) ">
+                            Service domain
+                            <span *ngIf="sortPropProd == 'service_domain' && sortReverseProd"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropProd == 'service_domain' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(prodSearchResult,'service_group',sortReverseProd) ">
+                            Service group
+                            <span *ngIf="sortPropProd == 'service_group' && sortReverseProd"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropProd == 'service_group' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(prodSearchResult,'service_name',sortReverseProd) ">
+                            Name
+                            <span *ngIf="sortPropProd == 'service_name' && sortReverseProd"
+                                  class="fa fa-caret-down"></span>
+                            <span *ngIf="sortPropProd == 'service_name' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(prodSearchResult,'product_type',sortReverseProd) ">
+                            Product type
+                            <span *ngIf="sortPropProd == 'product_type' && sortReverseProd"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropProd == 'product_type' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+
+                    <th class="hidden-xs">
+                        <a (click)="sortData(prodSearchResult,'product_subtype',sortReverseProd) ">
+                            Product subtype
+                            <span *ngIf="sortPropProd == 'product_subtype' && sortReverseProd"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropProd == 'product_subtype' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(prodSearchResult,'product_name',sortReverseProd) ">
+                            Product name
+                            <span *ngIf="sortPropProd == 'product_name' && sortReverseProd"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropProd == 'product_name' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(prodSearchResult,'product_alternative_name',sortReverseProd) ">
+                           Product alternative name
+                            <span *ngIf="sortPropProd == 'product_alternative_name' && sortReverseProd"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropProd == 'product_alternative_name' && !sortReverseProd"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of prodSearchResult">
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.service_domain"
+                              [innerHTML]="item._source.service_domain"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.service_group"
+                              [innerHTML]="item._source.service_group"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.service_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.service_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.service_id, item._source.service_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.service_id == id" class="bold-name"
+                                  [innerHTML]="item._source.service_name"></span>
+                            <a *ngIf="item._source.service_id != id"
+				href="#/object/btrelmodel?id={{item._source.service_id}}"
+				(click)="updateGetUrl(item._source.service_id, item._source.service_name)">
+                                <span [innerHTML]="item._source.service_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.product_type"
+                              [innerHTML]="item._source.product_type"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.product_subtype"
+                              [innerHTML]="item._source.product_subtype"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.product_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.product_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.product_id, item._source.product_name)">
+				            <i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.product_id == id" class="bold-name"
+                                  [innerHTML]="item._source.product_name"></span>
+                            <a *ngIf="item._source.product_id != id"
+				href="#/object/btrelmodel?id={{item._source.product_id}}"
+				(click)="updateGetUrl(item._source.product_id, item._source.product_name)">
+                                <span [innerHTML]="item._source.product_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.product_alternative_name"
+                              [innerHTML]="item._source.product_alternative_name"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="moreData" class="panel-footer">
+            <a (click)="getMoreData();" [innerHTML]="prodText">{{prodText}}</a>
+        </div>
+    </div>
+</div>

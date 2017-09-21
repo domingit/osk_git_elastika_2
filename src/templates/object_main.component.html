@@ -1,0 +1,10 @@
+<div *ngIf="!getSearchLabel()">
+    <div [hidden]="!isFirstTimeOpened" class="container-fluid first-time-page">
+        <h1>elastika</h1>
+        <h2></h2>
+        <h3></h3>
+    </div>
+    <div [hidden]="isFirstTimeOpened" class="container-fluid other-times-page">
+        <h1></h1>
+    </div>
+</div>

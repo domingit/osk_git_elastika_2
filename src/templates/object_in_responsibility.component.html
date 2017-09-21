@@ -1,0 +1,98 @@
+<div>
+<div *ngIf="respSearchResult" class="container-fluid"> 
+        <div class="table-responsive" *ngIf="respSearchResult">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        <a (click)="sortData(respSearchResult,'object_name',sortReverseResp) ">
+                            Who
+                            <span *ngIf="sortPropResp == 'object_name' && sortReverseResp"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropResp == 'object_name' && !sortReverseResp"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(respSearchResult,'role',sortReverseResp)">
+                            Role
+                            <span *ngIf="sortPropResp == 'role' && sortReverseResp"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropResp == 'role' && !sortReverseResp"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th class="hidden-xs">
+                        <a (click)="sortData(respSearchResult,'subject_type',sortReverseResp)">
+                            Type
+                            <span *ngIf="sortPropResp == 'subject_type' && sortReverseResp"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropResp == 'subject_type' && !sortReverseResp"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a (click)="sortData(respSearchResult,'subject_name',sortReverseResp)">
+                            What
+                            <span *ngIf="sortPropResp == 'subject_name' && sortReverseResp"
+                                  class="fa fa-caret-down [hidden]"></span>
+                            <span *ngIf="sortPropResp == 'subject_name' && !sortReverseResp"
+                                  class="fa fa-caret-up [hidden]"></span>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of respSearchResult">
+                    <td>
+                        <span *ngIf="item._source.object_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.object_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.object_id, item._source.object_name)">
+				<i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.object_id == id" class="bold-name"
+                                  [innerHTML]="item._source.object_name"></span>
+                            <a *ngIf="item._source.object_id != id"
+				href="#/object/respmodel?id={{item._source.object_id}}"
+				(click)="updateGetUrl(item._source.object_id, item._source.object_name);">
+                                <span *ngIf="item._source.object_name"
+                                      [innerHTML]="item._source.object_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.role" [innerHTML]="item._source.role"></span>
+                    </td>
+                    <td class="hidden-xs">
+                        <span *ngIf="item._source.subject_type" [innerHTML]="item._source.subject_type"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="item._source.subject_name">
+                            <a class="anchorimg"
+				href="#/object/info?id={{item._source.subject_id}}"
+				(click)="navigateToTabLink('/object/info',item._source.subject_id, item._source.subject_name)">
+				<i class="pulse fa fa-info-circle fa-lg"></i>
+                            </a>
+                            <span *ngIf="item._source.subject_id == id" class="bold-name"
+                                  [innerHTML]="item._source.subject_name"></span>
+                            <a *ngIf="item._source.subject_id != id"
+				href="#/object/respmodel?id={{item._source.subject_id}}"
+				(click)="updateGetUrl(item._source.subject_id, item._source.subject_name)">
+                                <span *ngIf="item._source.subject_name"
+                                      [innerHTML]="item._source.subject_name"></span>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+                <!--<tr *ngIf="respSearchResult">
+                    <td colspan = "7" *ngIf="respSearchResult.length==0">No data found</td>
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="moreData" class="panel-footer">
+            <a (click)="getMoreData()" [innerHTML]="respText">{{respText}}</a>
+        </div>
+</div>
+</div>
