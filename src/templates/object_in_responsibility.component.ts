@@ -29,7 +29,6 @@ export class ObjectResponsibilityComponent {
                 this.elastic.searchInRespModel(id, this.requestedItemCount)
             )
             .subscribe((item) => {
-		//this.respSearchResult = this.service.respSearchResult = this.sortData(item);
 		this.respSearchResult = this.sortData(item);
                 this.id = this._router.url.split('=')[1];
                 this.totalItemCount = this.elastic.respTotal;
@@ -46,12 +45,6 @@ export class ObjectResponsibilityComponent {
                     this.moreData = false;
                     this.respText = '';
                 }
-
-        /*        if(!item[0]){
-                    this.service.setSearchLabel('NO DATA');
-                } else{
-                    this.service.setSearchLabel(item[0]._source.subject_name);
-            }*/
              });
 
         this.sortPropResp = this.service.sortPropResp;
@@ -68,7 +61,6 @@ export class ObjectResponsibilityComponent {
                 this.elastic.searchInRespModel(id, this.totalItemCount, true)
             )
             .subscribe((item) => {
-		//this.respSearchResult = this.service.respSearchResult =  this.sortData(item);
 		this.respSearchResult = this.sortData(item);
 		this.requestedItemCount = this.totalItemCount;
             	this.moreData = false;

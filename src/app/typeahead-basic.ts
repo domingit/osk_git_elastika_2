@@ -34,6 +34,7 @@ export class NgbdTypeaheadTemplate {
   searchText: any;
   indexLength: number;
   searchName: any;
+  typeHeadColor = 'black';
 
   constructor(private route: ActivatedRoute, private _router: Router, private locationStrategy: LocationStrategy, private elastic: ElasticSearchService, private objectService: ObjectService) {
     this.searchText = this.objectService.searchText;
@@ -73,7 +74,7 @@ export class NgbdTypeaheadTemplate {
             }
             else{
               this.searching = true;
-              //console.log("citam");
+              this.typeHeadColor = "blue";
             }
           }),
         term =>
@@ -83,18 +84,22 @@ export class NgbdTypeaheadTemplate {
             ) :
           _catch.call(
             _do.call(this.elastic.suggest(term), () => this.searchFailed = false),
-            () => {
+            (data) => {
               this.searchFailed = true;
+              this.searching = false;
+              this.typeHeadColor = "red";
               return of.call([]);
             }
           )
       ),
-      () => this.searching = false);
+      (data) => {this.searching = false
+            data.length > 0 ? this.typeHeadColor = "black" : this.typeHeadColor = "red";
+      });
 
     formatter = (x: { _source: any }) =>
     this.searchName;  
-  
-  valuechange(newValue) {
+
+     valuechange(newValue) {
     //console.log(newValue);
   }
 

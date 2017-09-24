@@ -45,12 +45,6 @@ export class ObjectBTRelationComponent {
                     this.moreData = false;
                     this.btrelText = '';
                 }
-
-        /*        if(!item[0]){
-                    this.service.setSearchLabel('NO DATA');
-                } else{
-                    this.service.setSearchLabel(item[0]._source.subject_name);
-            }*/
              });
 
         this.sortPropBTRel = this.service.sortPropBTRel;

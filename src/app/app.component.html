@@ -1,135 +1,121 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-     <div class="navbar-header">
-            <!--<div class="navbar-brand">
-                <input  type="search" 
-                class="form-control search-field"
-                [(ngModel)]="filter" 
-                id="searchField"
-                placeholder={{searchText}} 
-                [disabled]="!signedIn" 
-                uib-typeahead="ci as ci._source.name for ci in suggest($viewValue)"
-                typeahead-template-url="templates/suggest_template.html" 
-                ng-change="onChange()"
-                typeahead-on-select="onSelect($item, $model, $label)" 
-                typeahead-min-length="2" 
-                typeahead-wait-ms="100" >
-            </div>-->
-            <div class="navbar-brand menu-button">
-                <div md2-menu class="menu-button" x-position="above" y-position="before">
+    <div class="navbar-header">
+        <div class="navbar-brand menu-button">
+            <div md2-menu class="menu-button" x-position="above" y-position="before">
                 <button button="primary" [disabled]=!signedIn md2-menu-trigger class="pulse-light nav-brand-img-correction menu-button" style="font-size: 23px; color: rgb(255, 255, 255); background-color: rgb(47, 108, 154); height: 38px; width: 38px; line-height: 37px; border-radius: 50%; overflow: hidden; text-align: center; position: static; top: 90px; z-index: 2; text-shadow: rgb(33, 76, 108) 0px 0px, rgb(35, 80, 114) 1px 1px, rgb(37, 85, 121) 2px 2px, rgb(39, 89, 128) 3px 3px, rgb(41, 94, 134) 4px 4px, rgb(43, 99, 141) 5px 5px, rgb(45, 103, 147) 6px 6px;">
                         <i id="icon" class="fa fa-tasks" style="font-size: 23px; color: rgb(255, 255, 255); background-color: rgb(47, 108, 154); height: 38px; width: 38px; line-height: 37px; border-radius: 50%; overflow: hidden; text-align: center; position: static; top: 90px; z-index: 2; text-shadow: rgb(33, 76, 108) 0px 0px, rgb(35, 80, 114) 1px 1px, rgb(37, 85, 121) 2px 2px, rgb(39, 89, 128) 3px 3px, rgb(41, 94, 134) 4px 4px, rgb(43, 99, 141) 5px 5px, rgb(45, 103, 147) 6px 6px;"></i>
                     </button>
-                        <div md2-menu-content class="menu-content">
-                            <a target="_blank" class="menu-item-img waves-effect" (click)="navigateHome(); clearSearch();" md2-menu-item>
-				<img id="Elastika-logo" src="./assets/elastika-logo-blue-h-small.png" class="img-fluid flex-center" alt="Elastika Logo">
-                                <!--i id="icon" class="fa fa-fw fa-tasks"></i>Elastika -->
-                            </a>
-                            <a type="button" md2-menu-item class="menu-item waves-effect" (click)="profile.show()">
-                                <i class="fa fa-fw fa-user-o"></i>My account
-                            </a>
-                            <a type="button" md2-menu-item class="menu-item waves-effect" (click)="options.show()" data-toggle="modal" title="You can choose which types of data are taken into account for search" data-target=".bs-example-modal-lg">
-                                <i class="fa fa-fw fa-cog"></i>Settings
-                            </a>
-                            <a type="button" md2-menu-item class="menu-item waves-effect" (click)="links.show()">
-                                <i class="fa fa-fw fa-link"></i>Links
-                            </a>
-                            <a target="_blank" class="menu-item waves-effect" href="https://plazza.orange.com/groups/architecture/projects/elastika-project" md2-menu-item>
-                                <i class="fa fa-fw fa-fire"></i>News
-                            </a>
-                            <a type="button" md2-menu-item class="menu-item waves-effect" (click)="contants.show()">
-                                <i class="fa fa-fw fa-phone"></i>Contacts
-                            </a>
-                            <a type="button" md2-menu-item class="menu-item waves-effect" (click)="about.show()">
-                                <i class="fa fa-fw fa-heart"></i>About
-                            </a>
-                            <a type="button" md2-menu-item class="menu-item waves-effect" (click)="signOut()">
-                                <i class="fa fa-fw fa-sign-out"></i>Sign out
-                            </a>
-                        </div>
-                    </div>
+                <div md2-menu-content class="menu-content">
+                    <a target="_blank" class="menu-item-img waves-effect" (click)="navigateHome(); clearSearch();" md2-menu-item>
+                        <img id="Elastika-logo" src="./assets/elastika-logo-blue-h-small.png" class="img-fluid flex-center" alt="Elastika Logo">
+                        <!--i id="icon" class="fa fa-fw fa-tasks"></i>Elastika -->
+                    </a>
+                    <a type="button" md2-menu-item class="menu-item waves-effect" (click)="profile.show()">
+                        <i class="fa fa-fw fa-user-o"></i>My account
+                    </a>
+                    <a type="button" md2-menu-item class="menu-item waves-effect" (click)="options.show()" data-toggle="modal" title="You can choose which types of data are taken into account for search" data-target=".bs-example-modal-lg">
+                        <i class="fa fa-fw fa-cog"></i>Settings
+                    </a>
+                    <a type="button" md2-menu-item class="menu-item waves-effect" (click)="links.show()">
+                        <i class="fa fa-fw fa-link"></i>Links
+                    </a>
+                    <a target="_blank" class="menu-item waves-effect" href="https://plazza.orange.com/groups/architecture/projects/elastika-project" md2-menu-item>
+                        <i class="fa fa-fw fa-fire"></i>News
+                    </a>
+                    <a type="button" md2-menu-item class="menu-item waves-effect" (click)="contants.show()">
+                        <i class="fa fa-fw fa-phone"></i>Contacts
+                    </a>
+                    <a type="button" md2-menu-item class="menu-item waves-effect" (click)="about.show()">
+                        <i class="fa fa-fw fa-heart"></i>About
+                    </a>
+                    <a type="button" md2-menu-item class="menu-item waves-effect" (click)="signOut()">
+                        <i class="fa fa-fw fa-sign-out"></i>Sign out
+                    </a>
+                </div>
             </div>
-            <div>
-                <ngbd-typeahead-template></ngbd-typeahead-template>
-            </div>
+        </div>
+        <div>
+            <ngbd-typeahead-template></ngbd-typeahead-template>
+        </div>
     </div>
 </nav>
 
 <div class="container-fluid">
     <div>
-        <object-body></object-body>  
+        <object-body></object-body>
     </div>
 </div>
 
-    <footer-elastika></footer-elastika>
+<footer-elastika></footer-elastika>
 
-    <app-modal #options [showHeader]="true" [showFooter]="true" tabindex="-1">
-        <div class="app-modal-header">
-            <h4 class="modal-title" id="myModalLabel">Choose indices for search</h4>
-        </div>
-        <div class="app-modal-body">
-            <div class="row" *ngIf="indexAliasesModel">
-                <ngbd-buttons-checkbox [(indexAliasesModel)]="indexAliasesModel"></ngbd-buttons-checkbox>
-            </div>
-        </div>
-        <div class="app-modal-footer">
-            <div class="row">
-                <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['default'])">Set to default</label></div>
-                <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['all'])">All</label></div>
-                <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices([])">None</label></div>
-                <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['alias_systems'])">Systems only</label></div>
-                <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['alias_services'])">Services only</label></div>
-                <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['alias_business_terms','alias_data_areas'])">Bus.terms only</label></div>
-            </div>
-        </div>
-    </app-modal>
-
-    <app-modal #profile [showHeader]="true" tabindex="-1">
-        <div class="app-modal-header">
-            <h4 class="modal-title" id="myModalLabel">My account</h4>
-        </div>
-        <div class="app-modal-body">
-            <profile-body></profile-body>
-        </div>
-    </app-modal>
-
-    <app-modal #about [showHeader]="true" tabindex="-1">
-        <div class="app-modal-header">
-            <h4 class="modal-title" id="myModalLabel">About</h4>
-        </div>
-        <div class="app-modal-body">
-            <about-body></about-body>
-	    <div class="version-text">Version 3.0.0 (September 2017)</div>
-            <orange-body></orange-body>
-        </div>
-    </app-modal>
-
-    <app-modal #links [showHeader]="true" tabindex="-1">
-        <div class="app-modal-header">
-	    <h4 class="modal-title" id="myModalLabel">Links</h4>
-        </div>
-        <div class="app-modal-body">
-            <links-body></links-body>
-            <links-comp-body></links-comp-body>
-        </div>
-    </app-modal>
-
-    <app-modal #contants [showHeader]="true" tabindex="-1">
-        <div class="app-modal-header">
-	    <h4 class="modal-title" id="myModalLabel">Contacts</h4>
-        </div>
-        <div class="app-modal-body">
-            <contacts-body></contacts-body>
-        </div>
-    </app-modal>
-
-    <app-modal #news [showHeader]="false" tabindex="-1">
+<app-modal #options [showHeader]="true" [showFooter]="true" tabindex="-1">
+    <div class="app-modal-header">
+        <h4 class="modal-title" id="myModalLabel">Choose indices for search</h4>
+    </div>
     <div class="app-modal-body">
-            <news-body></news-body>
+        <div class="row" *ngIf="indexAliasesModel">
+            <ngbd-buttons-checkbox [(indexAliasesModel)]="indexAliasesModel"></ngbd-buttons-checkbox>
         </div>
-    </app-modal>
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['default'])">Set to default</label></div>
+            <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['all'])">All</label></div>
+            <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices([])">None</label></div>
+            <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['alias_systems'])">Systems only</label></div>
+            <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['alias_services'])">Services only</label></div>
+            <div class="col-xs-6 col-md-2 col-lg-2"><label class="btn btn-info btn-group-justified waves-effect" (click)="setIndices(['alias_business_terms','alias_data_areas'])">Bus.terms only</label></div>
+        </div>
+    </div>
+</app-modal>
+
+<app-modal #profile [showHeader]="true" tabindex="-1">
+    <div class="app-modal-header">
+        <h4 class="modal-title" id="myModalLabel">My account</h4>
+    </div>
+    <div class="app-modal-body">
+        <profile-body></profile-body>
+    </div>
+</app-modal>
+
+<app-modal #about [showHeader]="true" tabindex="-1">
+    <div class="app-modal-header">
+        <h4 class="modal-title" id="myModalLabel">About</h4>
+    </div>
+    <div class="app-modal-body">
+        <about-body></about-body>
+        <div class="version-text">Version 3.0.0 (September 2017)</div>
+        <orange-body></orange-body>
+    </div>
+</app-modal>
+
+<app-modal #links [showHeader]="true" tabindex="-1">
+    <div class="app-modal-header">
+        <h4 class="modal-title" id="myModalLabel">Links</h4>
+    </div>
+    <div class="app-modal-body">
+        <links-body></links-body>
+        <links-comp-body></links-comp-body>
+    </div>
+</app-modal>
+
+<app-modal #contants [showHeader]="true" tabindex="-1">
+    <div class="app-modal-header">
+        <h4 class="modal-title" id="myModalLabel">Contacts</h4>
+    </div>
+    <div class="app-modal-body">
+        <contacts-body></contacts-body>
+    </div>
+</app-modal>
+
+<app-modal #news [showHeader]="false" tabindex="-1">
+    <div class="app-modal-body">
+        <news-body></news-body>
+    </div>
+</app-modal>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#searchField").focus();
     });
 </script>

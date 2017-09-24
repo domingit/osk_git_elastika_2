@@ -45,12 +45,6 @@ export class ObjectInfrastructureComponent{
                     this.moreData = false;
                     this.infraText = '';
                 }
-
-        /*        if(!item[0]){
-                    this.service.setSearchLabel('NO DATA');
-                } else{
-                    this.service.setSearchLabel(item[0]._source.subject_name);
-            }*/
              });
 
         this.sortPropInfra = this.service.sortPropInfra;

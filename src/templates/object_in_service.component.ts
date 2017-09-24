@@ -45,12 +45,6 @@ export class ObjectServiceComponent{
                     this.moreData = false;
                     this.servText = '';
                 }
-
-        /*        if(!item[0]){
-                    this.service.setSearchLabel('NO DATA');
-                } else{
-                    this.service.setSearchLabel(item[0]._source.subject_name);
-            }*/
              });
 
         this.sortPropServ = this.service.sortPropServ;

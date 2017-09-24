@@ -21,7 +21,6 @@ export class ObjectBodyComponent{
     isFirstTimeOpened = true;
 
     constructor(private _router: Router, private activatedRoute:ActivatedRoute, private objectService: ObjectService){
-        //this.head_title="NO active TAB";
         this.tabsConfig =  this.objectService.tabsConfig;
         if(this.tabsConfig[this.objectService._type]) {
             for(let i in this.tabs){

@@ -20,7 +20,6 @@ constructor(private service: ObjectService){
   }
 
   public closeModal(): any {
-    //this.service.emitSubjectSign(true);
     this.service.emitSubjectModal(true);
   }
 

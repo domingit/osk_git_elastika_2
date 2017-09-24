@@ -10,8 +10,6 @@ import { KeycloakService } from '../app/keycloak.service';
 export class ElasticSearchService {
 
     public ES_uri: 'https://elastika2.fe.sun.orange.sk/';
-    //public ES_uri: 'https://softec.sk';
-    //IDP URI for getting info about account
     public account_url: 'https://idp.orange.sk/auth/realms/orange/account/?referrer=elastika';
     //URI for stabilization logout proces. otherwise application is trying to login again, because id is in URL
     //public logout_redirect_uri: 'https://localhost/elastika/app/index.html';
@@ -44,8 +42,22 @@ export class ElasticSearchService {
       {type: "alias_processes", value: false, name: "Process"},
       {type: "alias_process_interfaces", value: false, name: "Process intf."},
       {type: "alias_business_terms", value: false, name: "Business term"},
-      {type: "alias_data_areas", value: false, name: "Data area"},
     ];
+
+    /*public indexAliasesModel = [
+      {type: "alias_systems", value : true, name: "System"},
+      {type: "alias_services", value: true, name: "Service"},
+      {type: "alias_products", value: true, name: "Product"},
+      {type: "alias_information_carriers", value: true, name: "Infocarrier"},
+      {type: "alias_servers", value: true, name: "Server"},
+      {type: "alias_people", value: true, name: "Person"},
+      {type: "alias_vendors", value: true, name: "Vendor"},
+      {type: "alias_consist_depend_objects", value: false, name: "Infra"},
+      {type: "alias_processes", value: false, name: "Process"},
+      {type: "alias_process_interfaces", value: false, name: "Process intf."},
+      {type: "alias_business_terms", value: false, name: "Business term"},
+      {type: "alias_data_areas", value: false, name: "Data area"},
+    ];*/
 
     private defaultIndexAliasesModel = [
       {type: "alias_systems", value : true, name: "System"},
@@ -59,7 +71,6 @@ export class ElasticSearchService {
       {type: "alias_processes", value: false, name: "Process"},
       {type: "alias_process_interfaces", value: false, name: "Process intf."},
       {type: "alias_business_terms", value: true, name: "Business term"},
-      {type: "alias_data_areas", value: true, name: "Data area"}
     ];
 
   public allowedIndices;
@@ -77,7 +88,7 @@ export class ElasticSearchService {
   constructor(private ObjectService: ObjectService, private _cookieService:CookieService, private keyclock: KeycloakService) {
     this.setIndices(['cookies']);
     let token = "token";
-    // keyclock.getToken().then(token => {
+     keyclock.getToken().then(token => {
         this._client = elasticsearch.Client(
         {
             host: {
@@ -93,7 +104,7 @@ export class ElasticSearchService {
               }
         }
         );
-    // });
+     });
   }
 
   public getIndices(){
@@ -302,7 +313,6 @@ export class ElasticSearchService {
      public searchInInfraModel = function (val, size, more?) {
         var index = "alias_system_instance_servers";
         this.infraModelId = val;
-        //console.log(val);
         if(this.infra_id!=val || more)
         {
         this.infraSearchResult = Observable.fromPromise(this._client.search({
@@ -324,9 +334,6 @@ export class ElasticSearchService {
         this.infra_id = val;
         this.objectInf = this.getObjectById(val)
                 .subscribe((item) => { this.item = item;
-                    /*this.ObjectService.setSearchLabel(item._source.name);
-                    this.ObjectService.emitSubjectSearch(item._source.name);
-                this.ObjectService.emitSubject(item._type);*/
                 });
         }
         return this.infraSearchResult
@@ -361,9 +368,6 @@ export class ElasticSearchService {
         this.prod_id=val;
         this.objectInf = this.getObjectById(val)
             .subscribe((item) => { this.item = item;
-                 /*this.ObjectService.setSearchLabel(item._source.name);
-                this.ObjectService.emitSubjectSearch(item._source.name);
-                this.ObjectService.emitSubject(item._type);*/
             });
         }
         return this.prodSearchResult.map(
@@ -399,9 +403,6 @@ export class ElasticSearchService {
             this.serv_id=val;
             this.objectInf = this.getObjectById(val)
                 .subscribe((item) => { this.item = item;
-                    /*this.ObjectService.setSearchLabel(item._source.name);
-                    this.ObjectService.emitSubjectSearch(item._source.name);
-                this.ObjectService.emitSubject(item._type);*/
                 });
             }
         return this.servSearchResult.map(
@@ -435,9 +436,6 @@ export class ElasticSearchService {
             this.resp_id=val;
             this.objectInf = this.getObjectById(val)
                 .subscribe((item) => { this.item = item;
-                    /*this.ObjectService.setSearchLabel(item._source.name);
-                    this.ObjectService.emitSubjectSearch(item._source.name);
-                this.ObjectService.emitSubject(item._type);*/
                 });
             }
         return this.respSearchResult.map(
@@ -471,9 +469,6 @@ export class ElasticSearchService {
             this.btrel_id=val;
             this.objectInf = this.getObjectById(val)
                 .subscribe((item) => { this.item = item;
-                    /*this.ObjectService.setSearchLabel(item._source.name);
-                    this.ObjectService.emitSubjectSearch(item._source.name);
-                this.ObjectService.emitSubject(item._type);*/
                 });
             }
         return this.btrelSearchResult.map(
