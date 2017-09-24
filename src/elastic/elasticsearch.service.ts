@@ -30,21 +30,7 @@ export class ElasticSearchService {
     public objSearchResult;
     public obj_id;
 
-    public indexAliasesModel = [
-      {type: "alias_systems", value : true, name: "System"},
-      {type: "alias_services", value: true, name: "Service"},
-      {type: "alias_products", value: true, name: "Product"},
-      {type: "alias_information_carriers", value: true, name: "Infocarrier"},
-      {type: "alias_servers", value: true, name: "Server"},
-      {type: "alias_people", value: true, name: "Person"},
-      {type: "alias_vendors", value: true, name: "Vendor"},
-      {type: "alias_consist_depend_objects", value: false, name: "Infra"},
-      {type: "alias_processes", value: false, name: "Process"},
-      {type: "alias_process_interfaces", value: false, name: "Process intf."},
-      {type: "alias_business_terms", value: false, name: "Business term"},
-    ];
-
-    /*public indexAliasesModel = [
+        public indexAliasesModel = [
       {type: "alias_systems", value : true, name: "System"},
       {type: "alias_services", value: true, name: "Service"},
       {type: "alias_products", value: true, name: "Product"},
@@ -57,7 +43,7 @@ export class ElasticSearchService {
       {type: "alias_process_interfaces", value: false, name: "Process intf."},
       {type: "alias_business_terms", value: false, name: "Business term"},
       {type: "alias_data_areas", value: false, name: "Data area"},
-    ];*/
+    ];
 
     private defaultIndexAliasesModel = [
       {type: "alias_systems", value : true, name: "System"},
@@ -71,6 +57,7 @@ export class ElasticSearchService {
       {type: "alias_processes", value: false, name: "Process"},
       {type: "alias_process_interfaces", value: false, name: "Process intf."},
       {type: "alias_business_terms", value: true, name: "Business term"},
+      {type: "alias_data_areas", value: true, name: "Data area"}
     ];
 
   public allowedIndices;
@@ -92,9 +79,9 @@ export class ElasticSearchService {
         this._client = elasticsearch.Client(
         {
             host: {
-                // host: 'https://elastika2.fe.sun.orange.sk/',
-                host: 'localhost',
-                port: 9200,
+                host: 'https://elastika2.fe.sun.orange.sk/',
+                //host: 'localhost',
+                //port: 9200,
                 headers : {
                   'Authorization': 'Bearer ' + token
                 },
