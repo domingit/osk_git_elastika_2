@@ -1,5 +1,5 @@
 <div class="col-xs-6 col-md-2 col-lg-2" data-toggle="buttons" *ngFor="let option of indexAliasesModel; let i = index">
   <label class="btn btn-custom btn-group-justified waves-effect" [class.active]="option.value">
-    <input type="checkbox" [(ngModel)]="option.value" (ngModelChange) = "onClick(option.type)"> {{option.name}}> {{option.name}}
+    <input type="checkbox" [(ngModel)]="option.value" (ngModelChange) = "onClick(option.type)"> {{option.name}}
   </label>
 </div>

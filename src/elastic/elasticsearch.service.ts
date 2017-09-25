@@ -31,33 +31,33 @@ export class ElasticSearchService {
     public obj_id;
 
         public indexAliasesModel = [
-      {type: "alias_systems", value : true, name: "System"},
-      {type: "alias_services", value: true, name: "Service"},
-      {type: "alias_products", value: true, name: "Product"},
-      {type: "alias_information_carriers", value: true, name: "Infocarrier"},
-      {type: "alias_servers", value: true, name: "Server"},
-      {type: "alias_people", value: true, name: "Person"},
-      {type: "alias_vendors", value: true, name: "Vendor"},
+      {type: "alias_systems", value : true, name: "Systems"},
+      {type: "alias_services", value: true, name: "Services"},
+      {type: "alias_products", value: true, name: "Products"},
+      {type: "alias_information_carriers", value: true, name: "Infocarriers"},
+      {type: "alias_servers", value: true, name: "Servers"},
+      {type: "alias_people", value: true, name: "People"},
+      {type: "alias_vendors", value: true, name: "Vendors"},
       {type: "alias_consist_depend_objects", value: false, name: "Infra"},
-      {type: "alias_processes", value: false, name: "Process"},
+      {type: "alias_processes", value: false, name: "Processes"},
       {type: "alias_process_interfaces", value: false, name: "Process intf."},
-      {type: "alias_business_terms", value: false, name: "Business term"},
-      {type: "alias_data_areas", value: false, name: "Data area"},
+      {type: "alias_business_terms", value: false, name: "Business terms"},
+      {type: "alias_data_areas", value: false, name: "Data areas"},
     ];
 
     private defaultIndexAliasesModel = [
-      {type: "alias_systems", value : true, name: "System"},
-      {type: "alias_services", value: true, name: "Service"},
-      {type: "alias_products", value: true, name: "Product"},
-      {type: "alias_information_carriers", value: true, name: "Infocarrier"},
-      {type: "alias_servers", value: true, name: "Server"},
-      {type: "alias_people", value: true, name: "Person"},
-      {type: "alias_vendors", value: true, name: "Vendor"},
+      {type: "alias_systems", value : true, name: "Systems"},
+      {type: "alias_services", value: true, name: "Services"},
+      {type: "alias_products", value: true, name: "Products"},
+      {type: "alias_information_carriers", value: true, name: "Infocarriers"},
+      {type: "alias_servers", value: true, name: "Servers"},
+      {type: "alias_people", value: true, name: "People"},
+      {type: "alias_vendors", value: true, name: "Vendors"},
       {type: "alias_consist_depend_objects", value: false, name: "Infra"},
-      {type: "alias_processes", value: false, name: "Process"},
+      {type: "alias_processes", value: false, name: "Processes"},
       {type: "alias_process_interfaces", value: false, name: "Process intf."},
-      {type: "alias_business_terms", value: true, name: "Business term"},
-      {type: "alias_data_areas", value: true, name: "Data area"}
+      {type: "alias_business_terms", value: true, name: "Business terms"},
+      {type: "alias_data_areas", value: true, name: "Data areas"}
     ];
 
   public allowedIndices;
@@ -74,21 +74,22 @@ export class ElasticSearchService {
 
   constructor(private ObjectService: ObjectService, private _cookieService:CookieService, private keyclock: KeycloakService) {
     this.setIndices(['cookies']);
-    let token = "token";
      keyclock.getToken().then(token => {
         this._client = elasticsearch.Client(
         {
             host: {
-                host: 'https://elastika2.fe.sun.orange.sk/',
+                host: 'elastika2.fe.sun.orange.sk',
+                protocol: 'https',
+                port: 443,
                 //host: 'localhost',
                 //port: 9200,
                 headers : {
                   'Authorization': 'Bearer ' + token
                 },
-                maxRetries: 0,
-                requestTimeout: 5000,
-                apiVersion: '5.3', //, log: 'trace'
-              }
+              },
+              maxRetries: 0,
+              requestTimeout: 5000,
+              apiVersion: '5.3', //, log: 'trace'
         }
         );
      });
@@ -253,7 +254,7 @@ export class ElasticSearchService {
        }
          }))
         .map(
-            (resp) => { 
+            (resp) => {
                 return (<any>resp).hits.hits;
             }
         )
@@ -284,7 +285,7 @@ export class ElasticSearchService {
         }
         return this.objSearchResult
         .map(
-            (resp) => { 
+            (resp) => {
 		if ((<any>resp).hits.hits[0] != null){
                     this.ObjectService.setSearchLabel((<any>resp).hits.hits[0]._source.name);
                     this.ObjectService.emitSubjectSearch((<any>resp).hits.hits[0]._source.name);
@@ -295,7 +296,7 @@ export class ElasticSearchService {
             }
         )
         .catch(this._serverError);
-    };    
+    };
 
      public searchInInfraModel = function (val, size, more?) {
         var index = "alias_system_instance_servers";
@@ -325,7 +326,7 @@ export class ElasticSearchService {
         }
         return this.infraSearchResult
         .map(
-            (resp) => { 
+            (resp) => {
                 this.infraTotal = resp.hits.total;
                 return (<any>resp).hits.hits;
             }
@@ -358,7 +359,7 @@ export class ElasticSearchService {
             });
         }
         return this.prodSearchResult.map(
-            (resp) => { 
+            (resp) => {
                 this.prodTotal = resp.hits.total;
                 return (<any>resp).hits.hits;
             }
@@ -393,7 +394,7 @@ export class ElasticSearchService {
                 });
             }
         return this.servSearchResult.map(
-            (resp) => { 
+            (resp) => {
                 this.servTotal = resp.hits.total;
                 return (<any>resp).hits.hits;
             }
@@ -426,7 +427,7 @@ export class ElasticSearchService {
                 });
             }
         return this.respSearchResult.map(
-            (resp) => { 
+            (resp) => {
                 this.respTotal = resp.hits.total;
                 return (<any>resp).hits.hits;
             }
@@ -459,7 +460,7 @@ export class ElasticSearchService {
                 });
             }
         return this.btrelSearchResult.map(
-            (resp) => { 
+            (resp) => {
                 this.btrelTotal = resp.hits.total;
                 return (<any>resp).hits.hits;
             }
