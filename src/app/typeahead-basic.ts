@@ -35,6 +35,7 @@ export class NgbdTypeaheadTemplate {
   indexLength: number;
   searchName: any;
   typeHeadColor = 'black';
+  termlength: number;
 
   constructor(private route: ActivatedRoute, private _router: Router, private locationStrategy: LocationStrategy, private elastic: ElasticSearchService, private objectService: ObjectService) {
     this.searchText = this.objectService.searchText;
@@ -69,12 +70,13 @@ export class NgbdTypeaheadTemplate {
             debounceTime.call(text$, 300)),
           () => {
             this.indexLength =  this.elastic.getIndices().length;
+            this.termlength = 1;
             if(this.indexLength==0){
               alert('You do not have selected any index. You must choose at least one in Settings');
             }
             else{
               this.searching = true;
-              this.typeHeadColor = "blue";
+              //this.typeHeadColor = "blue";
             }
           }),
         term =>
@@ -83,7 +85,9 @@ export class NgbdTypeaheadTemplate {
             of.call([])
             ) :
           _catch.call(
-            _do.call(this.elastic.suggest(term), () => this.searchFailed = false),
+            _do.call(this.elastic.suggest(term), () => {this.searchFailed = false;
+              this.termlength=term.length;
+              }),
             (data) => {
               this.searchFailed = true;
               this.searching = false;
@@ -93,7 +97,7 @@ export class NgbdTypeaheadTemplate {
           )
       ),
       (data) => {this.searching = false
-            data.length > 0 ? this.typeHeadColor = "black" : this.typeHeadColor = "red";
+            data.length > 0 || this.termlength===1 ? this.typeHeadColor = "black" : this.typeHeadColor = "red";
       });
 
     formatter = (x: { _source: any }) =>
